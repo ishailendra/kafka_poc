@@ -38,4 +38,20 @@ public class KafkaAdminConfig {
                 .build();
     }
 
+    @Bean
+    public NewTopic topic3() {
+        return TopicBuilder.name("STUDENT")
+                .partitions(10)
+                .replicas(1)
+                .build();
+    }
+
+    @Bean
+    public NewTopic topic4() {
+        return TopicBuilder.name("STUDENTS")
+                .partitions(10)
+                .replicas(1)
+                .build();
+    }
+
 }

@@ -27,7 +27,7 @@ public class ProducerController {
 //    private static final String TOPIC = "BOOKS";
 
     @PostMapping("/publish/{topic}")
-    public String sendMessage(@RequestBody Book book, @PathVariable String topic) throws ExecutionException, InterruptedException, JsonProcessingException {
+    public <V> String sendMessage(@RequestBody V v, @PathVariable String topic) throws ExecutionException, InterruptedException, JsonProcessingException {
 //        CompletableFuture<SendResult<String, Book>> resultFuture = template.send(topic, book);
 //        resultFuture.whenComplete((result, ex) -> {
 //            if (ex == null) {
@@ -40,7 +40,7 @@ public class ProducerController {
 //            }
 //        });
 
-        CompletableFuture<SendResult<String, String>> resultFuture = template.send(topic, new Gson().toJson(book));
+        CompletableFuture<SendResult<String, String>> resultFuture = template.send(topic, new Gson().toJson(v));
         resultFuture.whenComplete((result, ex) -> {
             if (ex == null) {
                 System.out.println("=====  SUCCESS  =====");
